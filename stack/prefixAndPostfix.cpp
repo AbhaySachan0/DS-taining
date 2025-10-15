@@ -98,8 +98,8 @@ void postfix(char exp[]){
 
 int main(){
     char expression[30];
+    cout<<"Enter Expression : ";
     cin>>expression;
     // prefix(expression);
     postfix(expression);
-
 }

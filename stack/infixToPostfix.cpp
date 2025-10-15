@@ -44,7 +44,9 @@ char stackTop(){
 }
 
 bool pre(char op1,char op2){
-    if(op1=='^'|| op1=='*' || op1=='/' ){
+    if(op1=='(' || op2=='(') return false;
+    else if(op2==')') return true;
+    else if(op1=='^'|| op1=='*' || op1=='/' ){
         if(op2=='^') return false;
         return true;
     } else{
@@ -58,13 +60,20 @@ void infixToPostfix(char exp[]){
     int i=0;
     while(exp[i]!='\0'){
         char symbol = exp[i];
-        if(symbol>='a' && symbol<='z'){
+        if(symbol>='a' && symbol<='z' || symbol>='A' && symbol<='Z'){
             postfix += symbol;
-        } else {
-            while(!isEmpty() && pre(symbol,stackTop())){
-                char x = pop();
-                postfix += x;
-
+        } else if(symbol == '('){
+            push(symbol);
+        }
+        else if(symbol == ')'){
+            while(!isEmpty() && stackTop() != '('){
+                postfix += pop();
+            }
+            if(!isEmpty()) pop();
+        }
+        else { 
+            while(!isEmpty() && pre(symbol, stackTop())){
+                postfix += pop();
             }
             push(symbol);
         }
@@ -82,6 +91,7 @@ void infixToPostfix(char exp[]){
 
 int main(){
     char infix[30];
+    cout<<"Infix Expression : ";
     cin>>infix;
     infixToPostfix(infix);    
 
