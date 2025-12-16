@@ -58,5 +58,10 @@ int main(){
     for(int i = 0; i < n; i++) cin >> arr[i];
     cout << "Enter element to insert: ";
     cin >> k;
+    EnqueueAsc(arr,n,k);
+
+
+    cout << "queue elements are : ";
+    for(int i = 0; i < n; i++) cout << arr[i]<<" ";
     return 0;
 }
