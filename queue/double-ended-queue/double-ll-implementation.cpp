@@ -85,11 +85,13 @@ int main(){
     InsertLeft(20);
     InsertRight(30);
     InsertRight(40);
-
+    cout<<"elements after inserting on left and right : ";
     Traverse();
 
     DeleteLeft();
     DeleteRight();
+
+    cout<<"elements after deleting from left and right : ";
 
     Traverse();
     return 0;
